@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/neo-ui",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "styleIncludePaths": ["src/lib/styles"]
+  },
+  "assets": [
+    "src/styles/palette.scss",
+    "dist/neo-ui/styles.css",
+    "dist/neo-ui/neo-ui.css"
+  ]
+}

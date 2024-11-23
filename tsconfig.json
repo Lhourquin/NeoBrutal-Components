@@ -11,6 +11,11 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "isolatedModules": true,
+    "paths": {
+      "neo-ui": [
+        "./dist/neo-ui"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
