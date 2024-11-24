@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:tailwind": "tailwindcss -i ./projects/neo-ui/src/styles/tailwind.css -o ./dist/neo-ui/neo-ui.css --minify",
-    "build-css": "sass ./projects/neo-ui/src/styles/palette.scss ./dist/neo-ui/styles.css"
+    "build:tailwind": "tailwindcss -i ./projects/neo-ui/src/lib/styles/tailwind.css -o ./dist/neo-ui/neo-ui.css",
+    "build-css": "sass ./projects/neo-ui/src/lib/styles/palette.scss ./dist/neo-ui/styles.css"
   },
   "private": true,
   "dependencies": {

@@ -1,20 +1,8 @@
 <button
-  [type]="type"
-  [disabled]="disabled"
-  [ngClass]="combinedClasses"
+  [type]="type || 'button'"
+  [disabled]="disabled || false"
+  [ngClass]="combinedClassesValue || ''"
   (click)="onClick($event)"
 >
   <ng-content></ng-content>
-</button>
-<!--      [style.background-color]="backgroundColor"
--->
-
-<div class="bg-violet-300 text-white p-4">
-  Couleur de fond : Violet 300
-</div>
-<div class="bg-pink-200 text-black p-4 hover-bg-pink-400">
-  Couleur de fond : Pink 200 (survol = Pink 400)
-</div>
-<div class="bg-red-400 text-white p-4 hover-text-yellow-300">
-  Couleur de fond : Red 400, texte survol = Yellow 300
-</div>
+</button> 

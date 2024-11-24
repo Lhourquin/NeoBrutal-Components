@@ -1,3 +1,3 @@
-<lib-neo-button width="small" [disabled]="false" backgroundColor="lime">Ajouter</lib-neo-button>
+<NeoButton width="small" [disabled]="toDisable" rounded="sm" backgroundColor="red">nothiing</NeoButton><NeoButton width="small" [disabled]="false" (click)="toDisable = !toDisable"rounded="md" backgroundColor="lime">Ajouter</NeoButton>
 
 <router-outlet />
