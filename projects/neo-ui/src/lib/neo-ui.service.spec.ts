@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NeoUiService } from './neo-ui.service';
+import { NeoUiService } from './services/neo-ui.service';
 
 describe('NeoUiService', () => {
   let service: NeoUiService;
