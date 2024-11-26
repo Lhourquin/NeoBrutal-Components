@@ -1,0 +1,1 @@
+export type WidthType = 'small' | 'large' | 'full' | 'medium' | 'auto'| 'fit';

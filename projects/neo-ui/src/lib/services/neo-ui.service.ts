@@ -51,4 +51,8 @@ export class NeoUiService {
     const resolvedColor = color || this.themeConfig.color;
     return this.generateBackgroundColorClasses(resolvedColor);
   }
+  
+  resolveProperty<T>(specific: T | undefined, defaultConfigProperty: T): T {
+    return specific !== undefined ? specific : defaultConfigProperty;
+  }
 }
