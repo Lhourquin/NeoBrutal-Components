@@ -1,16 +1,15 @@
-<!-- 
-<NeoButton width="small" [disabled]="false" (click)="toDisable = !toDisable">full</NeoButton>
-<NeoButton width="small" roundedType="medium" backgroundColor="red" [disabled]="toDisable">medium</NeoButton>
-<NeoButton width="small" roundedType="large" backgroundColor="orange" [disabled]="toDisable">large</NeoButton>
-<NeoButton width="small" roundedType="small" backgroundColor="violet" [disabled]="toDisable">small</NeoButton>
-<NeoButton width="small" roundedType="none" backgroundColor="yellow" [disabled]="toDisable">none</NeoButton> -->
-
-    <lib-neo-card width="full">
-        <NeoButton width="small" [disabled]="false" (click)="toDisable = !toDisable">lime</NeoButton>
-        <NeoButton width="small" roundedType="medium" backgroundColor="red" [disabled]="toDisable">red</NeoButton>
-        <NeoButton width="small" roundedType="large" backgroundColor="orange" [disabled]="toDisable">orange</NeoButton>
-        <NeoButton width="small" roundedType="small" backgroundColor="violet" [disabled]="toDisable">violet</NeoButton>
-        <NeoButton width="small" roundedType="none" backgroundColor="yellow" [disabled]="toDisable">yellow</NeoButton>
-    </lib-neo-card>
+<lib-neo-card width="medium">
+    <NeoButton>Default</NeoButton>
+    <NeoButton [properties]="{
+    backgroundColor: 'red',
+    roundedType:'medium'
+}" [disabled]="true">red</NeoButton>
+    <NeoButton [properties]="{
+    backgroundColor: 'yellow',
+    roundedType:'none'
+}" width="md" roundedType="large" backgroundColor="orange" [disabled]="toDisable">orange</NeoButton>
+    <NeoButton width="small" roundedType="large" backgroundColor="violet" [disabled]="toDisable">violet</NeoButton>
+    <NeoButton width="small" roundedType="none" backgroundColor="yellow" [disabled]="toDisable">yellow</NeoButton>
+</lib-neo-card>
 
 <router-outlet />

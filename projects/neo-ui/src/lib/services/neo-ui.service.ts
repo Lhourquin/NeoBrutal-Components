@@ -3,7 +3,6 @@ import { ROUNDED_CLASSES } from '../constants/rounded-class.constant';
 import { Color } from '../types/color.type';
 import { IThemeConfig } from '../interfaces/theme-config.interface';
 import { RoundedType } from '../types/rounded-type.type';
-import { IRoundedClass } from '../interfaces/rounded-class.interface';
 
 const DEFAULT_THEME_CONFIG: IThemeConfig = {
   roundedType: 'none',
@@ -17,11 +16,7 @@ export class NeoUiService {
   private themeConfig:IThemeConfig = DEFAULT_THEME_CONFIG;  
 
   updateGlobalTheme(newConfig:Partial<IThemeConfig>):void{
-    console.log(this.themeConfig)
-    console.log(newConfig)
     this.themeConfig = { ...this.themeConfig, ...newConfig };
-    console.log('after')
-    console.log(this.themeConfig)
   }
 
   setRoundedType(type: 'medium' | 'full' | 'large' | 'small' | 'none' ):void{
@@ -29,8 +24,6 @@ export class NeoUiService {
   }
   
   getRoundedClass(roundedType?:RoundedType):string{
-    console.log({roundedType})
-    console.log({themeConfigRoundedType: this.themeConfig.roundedType})
     if(!roundedType){
       return ROUNDED_CLASSES[this.themeConfig.roundedType];
     }
@@ -44,5 +37,18 @@ export class NeoUiService {
   getColor():Color{
     return this.themeConfig.color;    
   }
-
+  
+  private generateBackgroundColorClasses(color:Color){
+    return {
+        disabledClass: `neo-bg-${color}-200`,
+        normalClass: `neo-bg-${color}-300`,
+        activeClass: `neo-bg-${color}-400`,
+        hoverClass: `hover:neo-bg-${color}-400`
+    };
+  }
+  
+  getBackgroundColorClass(color?:Color){
+    const resolvedColor = color || this.themeConfig.color;
+    return this.generateBackgroundColorClasses(resolvedColor);
+  }
 }

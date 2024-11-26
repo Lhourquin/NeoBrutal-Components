@@ -12,8 +12,9 @@ import { RoundedType } from '../../types/rounded-type.type';
 })
 export class NeoCardComponent implements OnInit {
   neoUIService = inject(NeoUiService);
-  @Input() width:string = '';
+  @Input() width:string = 'fit';
   @Input() height:string = '';
+  @Input() position:string = '';
   @Input() backgroundColor:string = '';
   @Input() roundedType:RoundedType = this.neoUIService.getRoundedType();
   combinedClassesValue = '';
@@ -24,18 +25,15 @@ export class NeoCardComponent implements OnInit {
   }
   computeCombinedClasses(): string {
     const widthClass:any = {
+      fit:'neo-size-fit',
       small: 'neo-w-[12.5rem]',
-      medium: 'neo-w-[20rem]',
+      //medium: 'neo-size-24',
+      medium: 'neo-max-w-60',
       full: 'neo-w-full',
     };
-   
     const roundedClass = this.neoUIService.getRoundedClass(this.roundedType);
-    const color = this.backgroundColor; 
-    const disabledClass = `neo-bg-${color}-200`; 
-    const normalClass = `neo-bg-${color}-300`; 
-    const hoverClass = `hover:neo-bg-${color}-400`;
-    return ` ${roundedClass} ${widthClass[this.width]} 
-`.trim();
+    return `${this.position} ${roundedClass} ${widthClass[this.width]} 
+  `.trim();
   }
 
 }

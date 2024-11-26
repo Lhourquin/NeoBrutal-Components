@@ -2,7 +2,7 @@
   [type]="type || 'button'"
   [disabled]="disabled || false"
   [ngClass]="combinedClassesValue || ''"
-  class="relative neo-border-2 neo-border-black  neo-p-2.5 hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] "
+  class="neo-relative neo-border-2 neo-border-black neo-box-border neo-p-2.5 hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] "
   (click)="onClick($event)"
 >
   <ng-content></ng-content>
