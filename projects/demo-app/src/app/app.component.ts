@@ -12,11 +12,8 @@ import { NeoCard } from 'neo-ui';
 })
 export class AppComponent {
   globalTheme = inject(NeoUiService).updateGlobalTheme({
-      roundedType: 'medium',
-      color:'lime'
+    themeColor: 'red',
   });
   title = 'demo-app';
   isDisabled = false;
-  
 }
-

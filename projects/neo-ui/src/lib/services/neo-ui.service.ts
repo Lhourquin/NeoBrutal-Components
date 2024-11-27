@@ -6,52 +6,51 @@ import { RoundedType } from '../types/rounded-type.type';
 
 const DEFAULT_THEME_CONFIG: IThemeConfig = {
   roundedType: 'none',
-  color: 'lime',
+  themeColor: 'none',
 };
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NeoUiService {
+  private themeConfig: IThemeConfig = DEFAULT_THEME_CONFIG;
 
-  private themeConfig:IThemeConfig = DEFAULT_THEME_CONFIG;  
-
-  updateGlobalTheme(newConfig:Partial<IThemeConfig>):void{
+  updateGlobalTheme(newConfig: Partial<IThemeConfig>): void {
     this.themeConfig = { ...this.themeConfig, ...newConfig };
   }
 
-  setRoundedType(type: 'medium' | 'full' | 'large' | 'small' | 'none' ):void{
+  setRoundedType(type: 'medium' | 'full' | 'large' | 'small' | 'none'): void {
     this.themeConfig.roundedType = type;
   }
-  
-  getRoundedClass(roundedType?:RoundedType):string{
-    if(!roundedType){
+
+  getRoundedClass(roundedType?: RoundedType): string {
+    if (!roundedType) {
       return ROUNDED_CLASSES[this.themeConfig.roundedType];
     }
-    return ROUNDED_CLASSES[roundedType];      
+    return ROUNDED_CLASSES[roundedType];
   }
-  
-  getRoundedType():RoundedType{
-    return  this.themeConfig.roundedType
+
+  getRoundedType(): RoundedType {
+    return this.themeConfig.roundedType;
   }
-  
-  getColor():Color{
-    return this.themeConfig.color;    
+
+  getColor(): Color {
+    return this.themeConfig.themeColor;
   }
-  
-  private generateBackgroundColorClasses(color:Color){
+
+  private generateBackgroundColorClasses(color: Color) {
     return {
-        disabledClass: `neo-bg-${color}-200`,
-        normalClass: `neo-bg-${color}-300`,
-        activeClass: `neo-bg-${color}-400`,
-        hoverClass: `hover:neo-bg-${color}-400`
+      disabledClass: `neo-bg-${color}-200`,
+      normalClass: `neo-bg-${color}-300`,
+      activeClass: `neo-bg-${color}-400`,
+      hoverClass: `hover:neo-bg-${color}-400`,
     };
   }
-  
-  getBackgroundColorClass(color?:Color){
-    const resolvedColor = color || this.themeConfig.color;
+
+  getBackgroundColorClass(color?: Color) {
+    const resolvedColor = color || this.themeConfig.themeColor;
     return this.generateBackgroundColorClasses(resolvedColor);
   }
-  
+
   resolveProperty<T>(specific: T | undefined, defaultConfigProperty: T): T {
     return specific !== undefined ? specific : defaultConfigProperty;
   }

@@ -1,12 +1,28 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  Component,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { NeoUiService } from '../../services/neo-ui.service';
 import { RoundedType } from '../../types/rounded-type.type';
 import { Color } from '../../types/color.type';
 import { IButtonProperties } from '../../interfaces/button-properties.interface';
 import { WidthType } from '../../types/width.type';
 import { WIDTH_CLASS } from '../../constants/width-class.constant';
+
+type BackgoundClasses = {
+  disabledClass: string;
+  normalClass: string;
+  hoverClass: string;
+};
+interface IButtonTailwindClasses {
+  roundedClass: string;
+  backgroundClasses: BackgoundClasses;
+}
 @Component({
   selector: 'NeoButton',
   standalone: true,
@@ -15,51 +31,69 @@ import { WIDTH_CLASS } from '../../constants/width-class.constant';
   styleUrl: './neo-button.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class NeoButton  implements OnChanges, OnInit{
+export class NeoButton implements OnChanges, OnInit {
   neoUIService = inject(NeoUiService);
-
-  @Input() properties:IButtonProperties = {};
+  @Input() properties: IButtonProperties = {};
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled: boolean = false;
-  //@Input() additionalClasses: string = '';
   @Input() height: string = 'auto';
   @Input() width: WidthType = 'small';
   @Input() backgroundColor: Color = inject(NeoUiService).getColor();
   @Input() roundedType: RoundedType = inject(NeoUiService).getRoundedType();
-  @Input() id = '';
-  count = 0;
-  combinedClassesValue:string = '';
+  combinedClassesValue: string = '';
 
   ngOnInit(): void {
+    this.resolveProperties();
     this.combinedClassesValue = this.computeCombinedClasses();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.count++;
-    console.group("changement for :", this.id, " number of changement: ", this.count);
-    console.log(changes)
-
-    console.groupEnd()
+  ngOnChanges(): void {
     this.combinedClassesValue = this.computeCombinedClasses();
   }
 
   computeCombinedClasses(): string {
-    const roundedType:RoundedType = this.neoUIService.resolveProperty(
-      this.properties.roundedType, this.roundedType
-    );
-    const roundedClass= this.neoUIService.getRoundedClass(roundedType); 
-    const backgroundColor:Color = this.neoUIService.resolveProperty(
-      this.properties.backgroundColor , this.backgroundColor
-    );
-    const {disabledClass, normalClass, hoverClass} = this.neoUIService.getBackgroundColorClass(backgroundColor); 
-    const width:WidthType = this.neoUIService.resolveProperty(this.properties.width, this.width);
-    return ` ${roundedClass} ${WIDTH_CLASS[width]} 
-    ${
+    const { roundedClass, backgroundClasses } = this.generateTailwindClasses();
+    const classesState = this.getClassesState(backgroundClasses);
+    return `${roundedClass} ${WIDTH_CLASS[this.width]} ${classesState}
+  `.trim();
+  }
+
+  getClassesState(backgroundClasses: BackgoundClasses): string {
+    const { normalClass, disabledClass, hoverClass } = backgroundClasses;
+    return `${
       this.disabled
         ? `${disabledClass}  neo-cursor-not-allowed`
         : `${normalClass} ${hoverClass} neo-cursor-pointer`
-    }
-  `.trim();
+    }`.trim();
+  }
+
+  generateTailwindClasses(): IButtonTailwindClasses {
+    const roundedClass = this.neoUIService.getRoundedClass(this.roundedType);
+    const { disabledClass, normalClass, hoverClass } =
+      this.neoUIService.getBackgroundColorClass(this.backgroundColor);
+    return {
+      roundedClass,
+      backgroundClasses: {
+        disabledClass,
+        normalClass,
+        hoverClass,
+      },
+    };
+  }
+
+  resolveProperties(): void {
+    this.roundedType = this.neoUIService.resolveProperty(
+      this.properties.roundedType,
+      this.roundedType,
+    );
+    this.backgroundColor = this.neoUIService.resolveProperty(
+      this.properties.backgroundColor,
+      this.backgroundColor,
+    );
+    this.width = this.neoUIService.resolveProperty(
+      this.properties.width,
+      this.width,
+    );
   }
 
   onClick(event: Event): void {
@@ -67,5 +101,4 @@ export class NeoButton  implements OnChanges, OnInit{
       event.preventDefault();
     }
   }
-  
 }
