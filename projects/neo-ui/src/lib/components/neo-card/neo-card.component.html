@@ -1,7 +1,23 @@
 <div
-  [ngClass]="combinedClassesValue || ''"
-  class="neo-border-2 neo-border-black  neo-p-2.5 hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] neo-relative"
+  [ngClass]="[
+    combinedClassesValue,
+    'neo-border-2 neo-border-black hover:neo-shadow-[8px_8px_0px_rgba(0,0,0,1)] neo-p-6
+   neo-relative',
+  ]"
 >
   <ng-content></ng-content>
-</div> 
+</div>
+<!--
+  class="neo-border-2 neo-border-black hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] neo-relative"
+  [class]="additionalClass"
 
+  @if (imgSrc) {
+    <img
+      style="height: 100px; width: 100px; margin: auto"
+      [src]="imgSrc"
+      alt=""
+    />
+  }
+
+neo-p-8
+neo-p-2.5-->

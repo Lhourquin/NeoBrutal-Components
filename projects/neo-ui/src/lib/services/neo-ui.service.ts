@@ -43,6 +43,8 @@ export class NeoUiService {
       normalClass: `neo-bg-${color}-300`,
       activeClass: `neo-bg-${color}-400`,
       hoverClass: `hover:neo-bg-${color}-400`,
+      focusClass: `focus:neo-bg-${color}-200`,
+      focusActiveClass: `focus:neo-bg-${color}-200`,
     };
   }
 

@@ -1,68 +1,28 @@
-<!-- <NeoButton id="default" (click)="isDisabled = !isDisabled">Default</NeoButton> -->
-
-<!--     <NeoButton [properties]="{
-    backgroundColor: 'yellow',
-    roundedType:'none'
-}" width="md" roundedType="large" backgroundColor="orange" [disabled]="toDisable">orange</NeoButton>
-    <NeoButton width="small" roundedType="large" backgroundColor="violet" [disabled]="toDisable">violet</NeoButton> -->
-<!-- <NeoButton id="yellow" width="auto" roundedType="medium" backgroundColor="yellow" [disabled]="isDisabled">yellow</NeoButton> -->
-<div
-  style="
-    margin-top: 45px;
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-  "
->
-  <NeoButton
-    [properties]="{
-      roundedType: 'full',
-    }"
-    [disabled]="true"
-    class="text-white bg-blue"
-    >orange</NeoButton
-  >
-  <NeoButton width="small" roundedType="large">violet</NeoButton>
-  <NeoCard style="margin: 34px" height="fit" width="large">
-    <h2 style="text-align: center; font-size: 24px; font-weight: 500">SQL</h2>
-  </NeoCard>
-
-  <NeoCard height="fit" width="large">
-    <h2 style="text-align: center; font-size: 24px; font-weight: 500">SQL</h2>
-    <div style="bottom: 0%; display: flex; justify-content: space-around">
-      <NeoButton style="padding: 12px" id="medium" width="medium"
-        >Medium</NeoButton
+<NeoCard class="card">
+  <form [formGroup]="loginForm">
+    <div style="display: flex; flex-direction: column; text-align: left">
+      <NeoInput
+        label="Email"
+        class="input"
+        type="text"
+        name="identifer"
+        placeholder="exemple@mail.com"
+        [required]="true"
+        formControlName="identifier"
+        helperText="Entrez votre adresse email"
+        id="identifier"
+      ></NeoInput>
+      <NeoInput
+        label="Mot de passe"
+        [required]="true"
+        [formControlName]="'password'"
+        type="email"
+        placeholder="exemple@mail.com"
+        helperText="Entrez votre mot de passe"
       >
-      <NeoButton style="padding: 12px" id="medium" width="medium"
-        >Medium</NeoButton
-      >
+      </NeoInput>
     </div>
-  </NeoCard>
-  <NeoCard style="margin: 34px" height="large" width="large">
-    <h2 style="text-align: center; font-size: 24px; font-weight: 500">SQL</h2>
-    <!-- Fit: Adapte la largeur au contenu uniquement, bouton compact -->
-    <!-- <NeoButton id="fit" width="fit" backgroundColor="cyan">Fit adapter au contenu uniquement</NeoButton> -->
-
-    <!-- Auto: Adapte la largeur au contenu, mais peut être influencé par les styles du parent -->
-    <!-- <NeoButton id="auto" width="auto" backgroundColor="lime">Auto</NeoButton> -->
-
-    <!-- Small: Largeur fixe minimale de 8rem, mais limitée par max-w-full -->
-    <!-- <NeoButton id="small" width="small" backgroundColor="yellow">Small</NeoButton> -->
-
-    <!-- Medium: Largeur fixe de 20rem, mais limitée par max-w-full pour ne pas dépasser le conteneur -->
-    <div style="display: flex; justify-content: space-around">
-      <NeoButton id="medium" width="medium" backgroundColor="violet"
-        >Medium</NeoButton
-      >
-      <NeoButton id="medium" width="medium" backgroundColor="violet"
-        >Medium</NeoButton
-      >
-    </div>
-
-    <!-- Large: Grand : Minimum 20rem, Maximum 30rem -->
-    <!-- <NeoButton id="large" width="large" backgroundColor="orange">Large</NeoButton> -->
-    <!-- Full: Remplit toujours 100% de la largeur disponible du conteneur -->
-    <!-- <NeoButton id="full" width="full" backgroundColor="red">Full</NeoButton> -->
-  </NeoCard>
-</div>
+    <NeoButton [disabled]="true" class="btn">Submit</NeoButton>
+  </form>
+</NeoCard>
 <router-outlet />

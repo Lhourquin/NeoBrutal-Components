@@ -1,24 +1,23 @@
 /** @type {import('tailwindcss').Config} */
-const colors = ['orange', 'red', 'cyan', 'lime', 'pink', 'violet', 'yellow'];
+const colors = ["orange", "red", "cyan", "lime", "pink", "violet", "yellow"];
 const safelist = [
-  ...colors.flatMap(color => [
-  `neo-bg-${color}-200`,
-  `neo-bg-${color}-300`,
-  `neo-bg-${color}-400`,
-  `hover:neo-bg-${color}-400`,
-]),
-  'neo-rounded-sm',
-  'neo-rounded-md',
-  'neo-rounded-lg',
-  'neo-rounded-full',
-  'neo-rounded-none',
+  ...colors.flatMap((color) => [
+    `neo-bg-${color}-200`,
+    `neo-bg-${color}-300`,
+    `neo-bg-${color}-400`,
+    `hover:neo-bg-${color}-400`,
+    `focus:neo-bg-${color}-200`,
+    `active:neo-bg-${color}-400`,
+  ]),
+  "neo-rounded-sm",
+  "neo-rounded-md",
+  "neo-rounded-lg",
+  "neo-rounded-full",
+  "neo-rounded-none",
 ];
 module.exports = {
   prefix: "neo-",
-  content: [
-    "./projects/**/*.{html,ts}", 
-    "./src/**/*.{html,ts}", 
-  ],
+  content: ["./projects/**/*.{html,ts}", "./src/**/*.{html,ts}"],
   safelist,
   theme: {
     extend: {
@@ -58,7 +57,7 @@ module.exports = {
           300: "#79F7FF",
           400: "#53f2fc",
         },
-      }
+      },
     },
   },
   plugins: [],

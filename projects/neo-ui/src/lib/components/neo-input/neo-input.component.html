@@ -1,1 +1,48 @@
-<p>neo-input works!</p>
+<div>
+  @if (label) {
+    <label [for]="id" class="neo-block neo-mb-2 neo-font-medium">
+      {{ label }}
+      @if (required) {
+        <span class="neo-text-red-500">*</span>
+      }
+    </label>
+  }
+
+  @if (prefixTemplate) {
+    <div class="neo-absolute neo-left-3 neo-top-1/2 -neo-translate-y-1/2">
+      <ng-container [ngTemplateOutlet]="prefixTemplate"></ng-container>
+    </div>
+  }
+
+  @if (suffixTemplate) {
+    <div class="neo-absolute neo-right-3 neo-top-1/2 -neo-translate-y-1/2">
+      <ng-container [ngTemplateOutlet]="suffixTemplate"></ng-container>
+    </div>
+  }
+
+  <input
+    (input)="onInputChange($event)"
+    (blur)="onBlur()"
+    [value]="value"
+    [name]="name"
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    [attr.disabled]="isDisabled ? '' : null"
+    [ngClass]="[
+      combinedClassesValue,
+      prefixTemplate ? 'neo-pl-10' : '',
+      suffixTemplate ? 'neo-pr-10' : '',
+    ]"
+    class="neo-border-black neo-p-2.5 neo-w-full neo-border-2 focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] active:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+  />
+  @if (error) {
+    <span class="neo-text-red-500 neo-text-sm neo-mt-1">{{ error }}</span>
+  }
+  @if (success) {
+    <span class="neo-text-green-500 neo-text-sm neo-mt-1">{{ success }}</span>
+  }
+  @if (helperText) {
+    <span class="neo-text-gray-500 neo-text-sm neo-mt-1">{{ helperText }}</span>
+  }
+</div>
