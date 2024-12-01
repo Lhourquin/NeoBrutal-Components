@@ -1,0 +1,46 @@
+<div class="neo-relative">
+  <button
+    type="button"
+    class="neo-inline-flex neo-w-full neo-justify-center neo-gap-x-1.5 neo-border-2 neo-border-black neo-px-3 neo-py-2"
+    [ngClass]="[
+      combinedClassesValue,
+      'hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]  focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]',
+    ]"
+    (click)="toggleDropdown($event)"
+  >
+    <!--<ng-content select="[dropdown-label]"></ng-content>-->
+    {{ label }}
+    <svg
+      class="neo-mt-1 neo-h-5 neo-w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+  @if (isOpen) {
+    <div
+      [ngClass]="[combinedClassesValue]"
+      class="neo-absolute neo-left-0 neo-right-0 neo-mt-2 neo-bg-white neo-border-2 neo-border-black neo-z-50 neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+    >
+      @if (searchable) {
+        <input
+          [id]="inputId"
+          class="neo-w-full neo-p-2.5 neo-border-b-2 neo-border-black focus:neo-outline-none"
+          placeholder="Rechercher..."
+          (input)="onSearch($event)"
+          [value]="searchValue"
+          (click)="stopPropagation($event)"
+        />
+      }
+      <div class="neo-max-h-64 neo-overflow-y-auto" role="menu">
+        <ng-content select="[dropdown-content]"></ng-content>
+      </div>
+    </div>
+  }
+</div>

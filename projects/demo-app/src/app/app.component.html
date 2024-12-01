@@ -1,4 +1,6 @@
-<NeoCard class="card">
+<!--
+<NeoCard class="card"> </NeoCard>
+<router-outlet />
   <form [formGroup]="loginForm">
     <div style="display: flex; flex-direction: column; text-align: left">
       <NeoInput
@@ -24,5 +26,116 @@
     </div>
     <NeoButton [disabled]="true" class="btn">Submit</NeoButton>
   </form>
-</NeoCard>
-<router-outlet />
+-->
+<div class="flex flex-col items-center w-[400px] justify-center h-screen">
+  <NeoCard class="card">
+    <h1 class="text-center m-2 font-bold">Connectez-vous</h1>
+    <form [formGroup]="loginForm" class="flex flex-col space-y-1">
+      <NeoInput
+        label="Email"
+        helperText="Enter votre adresses email"
+        type="text"
+        name="identifer"
+        placeholder="exemple@mail.com"
+        formControlName="identifier"
+        id="identifier"
+        [required]="true"
+      />
+      <NeoDropdown
+        [searchable]="true"
+        (searchChange)="onSearch($event)"
+        label="Sélectionner une catégorie (simple)"
+      >
+        <div dropdown-content>
+          @for (category of filterItems(categories); track category.id) {
+            <NeoDropdownItem class="neo-text-left" [item]="category.title" />
+            <div class="neo-border-black neo-border-b-2"></div>
+          }
+        </div>
+      </NeoDropdown>
+
+      <NeoDropdown
+        [label]="label() + ' (groupe + recherche + dditem)'"
+        [searchable]="true"
+        (searchChange)="onSearch($event)"
+      >
+        <div class="neo-bg-white" dropdown-content>
+          <!-- Groupe 1 -->
+          <div class="neo-py-2">
+            <div
+              class="neo-px-4 neo-bg-white neo-text-sm neo-font-bold neo-text-gray-500"
+            >
+              Groupe 1
+            </div>
+            @for (item of filterItems(group1Items); track item.id) {
+              <NeoDropdownItem [item]="item.title" />
+            }
+          </div>
+
+          <!-- Groupe 2 -->
+          <div class="neo-py-2 neo-border-t-2 neo-border-black">
+            <div class="neo-px-4 neo-text-sm neo-font-bold neo-text-gray-500">
+              Groupe 2
+            </div>
+            @for (item of filterItems(group2Items); track item.id) {
+              <!--
+              <div
+                (click)="selectCategory(item.id, group2Items)"
+                class="neo-px-4 neo-py-2 hover:neo-bg-[#B8FF9F]"
+              >
+                {{ item.title }}
+              </div>
+            -->
+              <NeoDropdownItem
+                (click)="selectCategory(item.id, group2Items)"
+                [item]="item.title"
+              >
+              </NeoDropdownItem>
+            }
+          </div>
+        </div>
+      </NeoDropdown>
+      <!--
+      <NeoDropdown>
+        <span dropdown-label>Sélectionner une catégorie</span>
+
+        <div dropdown-content>
+          @for (category of categories; track category.id) {
+            <p
+              class="neo-px-4 neo-py-2 neo-border-b-2 neo-border-black hover:neo-bg-[#B8FF9F]"
+            >
+              {{ category.title }}
+            </p>
+          }
+        </div>
+      </NeoDropdown>
+      -->
+      <NeoInput
+        label="Mot de passe"
+        helperText="Entrer votre mot de passe"
+        [required]="true"
+        formControlName="password"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="P@$w0rd!"
+      />
+      <NeoButton id="loginBtn" type="submit" [disabled]="!loginForm.valid"
+        >Se connecter</NeoButton
+      >
+    </form>
+    <p class="mt-4 flex justify-center">
+      <a
+        routerLink="/auth/forgot-password"
+        class="text-xxx-orange-400 underline"
+        >Mot de passe oublié ?</a
+      >
+    </p>
+  </NeoCard>
+  <p class="mt-4">
+    Pas encore de compte ?
+    <a routerLink="/auth/signup" class="text-xxx-orange-400 underline"
+      >Inscrivez-vous</a
+    >
+  </p>
+</div>

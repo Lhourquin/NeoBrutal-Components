@@ -36,13 +36,17 @@
     ]"
     class="neo-border-black neo-p-2.5 neo-w-full neo-border-2 focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] active:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
   />
-  @if (error) {
-    <span class="neo-text-red-500 neo-text-sm neo-mt-1">{{ error }}</span>
-  }
-  @if (success) {
-    <span class="neo-text-green-500 neo-text-sm neo-mt-1">{{ success }}</span>
-  }
-  @if (helperText) {
-    <span class="neo-text-gray-500 neo-text-sm neo-mt-1">{{ helperText }}</span>
-  }
+  <div class="neo-flex neo-flex-col">
+    @if (error) {
+      <span class="neo-text-red-500 neo-text-sm neo-mt-1">{{ error }}</span>
+    }
+    @if (success) {
+      <span class="neo-text-green-500 neo-text-sm neo-mt-1">{{ success }}</span>
+    }
+    @if (helperText) {
+      <span class="neo-text-gray-500 neo-text-sm neo-mt-1">{{
+        helperText
+      }}</span>
+    }
+  </div>
 </div>

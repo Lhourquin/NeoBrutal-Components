@@ -1,3 +1,4 @@
 {
-    "chat.editor.wordWrap": "on"
+    "chat.editor.wordWrap": "on",
+    "workbench.colorTheme": "Visual Studio 2017 Light - C++"
 }
