@@ -8,8 +8,9 @@
     ]"
     (click)="toggleDropdown($event)"
   >
-    <!--<ng-content select="[dropdown-label]"></ng-content>-->
     {{ label }}
+    <!--<ng-content select="[dropdown-label]"></ng-content>-->
+    <!--
     <svg
       class="neo-mt-1 neo-h-5 neo-w-5"
       viewBox="0 0 20 20"
@@ -22,6 +23,7 @@
         clip-rule="evenodd"
       />
     </svg>
+    -->
   </button>
   @if (isOpen) {
     <div

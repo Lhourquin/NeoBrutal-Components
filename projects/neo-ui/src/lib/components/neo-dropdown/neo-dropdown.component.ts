@@ -109,7 +109,6 @@ export class NeoDropdown implements OnInit, OnChanges {
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
     if (!this.elementRef.nativeElement.contains(target)) {
-      console.log(this.elementRef.nativeElement);
       this.isOpen = false;
       this.neoDropdownService.setOpenDropdownId(undefined);
     }
@@ -136,7 +135,6 @@ export class NeoDropdown implements OnInit, OnChanges {
   }
   onSearch(event: Event): void {
     this.searchValue = (event.target as HTMLInputElement).value;
-    console.log(this.searchValue);
     this.searchChange.emit(this.searchValue);
   }
 }

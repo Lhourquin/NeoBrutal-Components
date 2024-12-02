@@ -41,6 +41,15 @@
         id="identifier"
         [required]="true"
       />
+      <NeoSelect
+        [options]="categories"
+        id="categories"
+        name="categorie"
+        label="Catégorie"
+        [multiSelect]="false"
+        formControlName="category"
+        [placeholder]="'Sélectionnez une catégorie'"
+      ></NeoSelect>
       <NeoDropdown
         [searchable]="true"
         (searchChange)="onSearch($event)"
@@ -105,7 +114,11 @@
         type="password"
         placeholder="P@$w0rd!"
       />
-      <NeoButton id="loginBtn" type="submit" [disabled]="!loginForm.valid"
+      <NeoButton
+        id="loginBtn"
+        type="submit"
+        (click)="submit()"
+        [disabled]="!loginForm.valid"
         >Se connecter</NeoButton
       >
     </form>

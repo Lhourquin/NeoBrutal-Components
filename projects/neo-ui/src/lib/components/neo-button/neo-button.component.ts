@@ -78,7 +78,6 @@ export class NeoButton implements OnChanges, OnInit {
   }
 
   onClick(event: Event): void {
-    console.log(event);
     if (this.disabled) event.preventDefault();
   }
 }

@@ -1,0 +1,27 @@
+.neo-select {
+  position: relative;
+}
+.neo-select-button {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.neo-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid black;
+  background: white;
+  z-index: 10;
+}
+.neo-select-dropdown div {
+  padding: 8px;
+  cursor: pointer;
+}
+.neo-select-dropdown div.selected {
+  background: #b8ff9f;
+}

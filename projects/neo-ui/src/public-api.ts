@@ -11,3 +11,5 @@ export * from './lib/components/neo-input/neo-input.component';
 export * from './lib/components/neo-dropdown/neo-dropdown.component';
 export * from './lib/components/neo-textarea/neo-textarea.component';
 export * from './lib/components/neo-dropdown-item/neo-dropdown-item.component';
+export * from './lib/components/neo-select/neo-select.component';
+export * from './lib/components/neo-option/neo-option.component';

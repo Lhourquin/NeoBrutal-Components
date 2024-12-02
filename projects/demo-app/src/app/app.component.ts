@@ -1,7 +1,13 @@
 import { Component, inject, OnChanges, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { NeoButton, NeoDropdownItem, NeoInput } from 'neo-ui';
+import {
+  NeoButton,
+  NeoDropdownItem,
+  NeoInput,
+  NeoOption,
+  NeoSelect,
+} from 'neo-ui';
 import { NeoUiService } from 'neo-ui';
 import { NeoCard, NeoDropdown } from 'neo-ui';
 import { Validators } from '@angular/forms';
@@ -17,6 +23,8 @@ import { Validators } from '@angular/forms';
     NeoButton,
     NeoCard,
     NeoInput,
+    NeoSelect,
+    NeoOption,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -46,6 +54,7 @@ export class AppComponent implements OnInit {
   loginForm = new FormGroup({
     identifier: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
   });
   label = signal('Sélectionner une catégorie');
   label2 = signal('Sélectionner une liste');
@@ -74,5 +83,9 @@ export class AppComponent implements OnInit {
   }
   getSelection(event: any) {
     console.log(event);
+  }
+
+  submit() {
+    console.log(this.loginForm);
   }
 }
