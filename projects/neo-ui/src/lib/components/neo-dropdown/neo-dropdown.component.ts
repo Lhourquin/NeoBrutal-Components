@@ -45,11 +45,13 @@ export class NeoDropdown implements OnInit, OnChanges {
   neoUIService = inject(NeoUiService);
   combinedClassesValue: string = '';
   disabled: boolean = false;
+  closable: boolean = true;
   @Input() backgroundColor: Color = inject(NeoUiService).getColor();
   @Input() roundedType: RoundedType = inject(NeoUiService).getRoundedType();
   @Input() searchable: boolean = false;
   @Input() label: string = '';
   @Output() searchChange = new EventEmitter<string>();
+  @Input() multiSelect: boolean = false;
 
   constructor() {
     effect(() => {
@@ -60,10 +62,16 @@ export class NeoDropdown implements OnInit, OnChanges {
     });
   }
   ngOnInit(): void {
+    if (this.multiSelect) {
+      this.closable = false;
+    }
     this.combinedClassesValue = this.computeCombinedClasses();
   }
 
   ngOnChanges(): void {
+    if (this.multiSelect) {
+      this.closable = false;
+    }
     this.combinedClassesValue = this.computeCombinedClasses();
   }
 
@@ -101,6 +109,7 @@ export class NeoDropdown implements OnInit, OnChanges {
   onDocumentClick(event: Event) {
     const target = event.target as HTMLElement;
     if (!this.elementRef.nativeElement.contains(target)) {
+      console.log(this.elementRef.nativeElement);
       this.isOpen = false;
       this.neoDropdownService.setOpenDropdownId(undefined);
     }
@@ -118,7 +127,13 @@ export class NeoDropdown implements OnInit, OnChanges {
       this.neoDropdownService.setOpenDropdownId(undefined);
     }
   }
-
+  closeDropdown(event: Event) {
+    event.stopPropagation();
+    if (this.closable) {
+      this.isOpen = false;
+      this.neoDropdownService.setOpenDropdownId(undefined);
+    }
+  }
   onSearch(event: Event): void {
     this.searchValue = (event.target as HTMLInputElement).value;
     console.log(this.searchValue);

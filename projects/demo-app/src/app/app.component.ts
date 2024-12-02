@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
   label = signal('Sélectionner une catégorie');
+  label2 = signal('Sélectionner une liste');
 
   ngOnInit(): void {
     this.loginForm.get('identifier')?.valueChanges.subscribe((value) => {
@@ -65,10 +66,10 @@ export class AppComponent implements OnInit {
     console.log('Recherche :', searchValue);
     this.searchValue = searchValue;
   }
-  selectCategory(id: number, items: any[]) {
+  selectCategory(id: number, items: any[], label: any) {
     console.log(id);
     this.selectedCategory = items.find((c) => c.id == id).title;
-    this.label.set(this.selectedCategory);
+    label.set(this.selectedCategory);
     console.log(this.selectedCategory);
   }
   getSelection(event: any) {

@@ -25,7 +25,6 @@
   </button>
   @if (isOpen) {
     <div
-      [ngClass]="[combinedClassesValue]"
       class="neo-absolute neo-left-0 neo-right-0 neo-mt-2 neo-bg-white neo-border-2 neo-border-black neo-z-50 neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
     >
       @if (searchable) {
@@ -38,7 +37,11 @@
           (click)="stopPropagation($event)"
         />
       }
-      <div class="neo-max-h-64 neo-overflow-y-auto" role="menu">
+      <div
+        (click)="closeDropdown($event)"
+        class="neo-max-h-64 neo-overflow-y-auto"
+        role="menu"
+      >
         <ng-content select="[dropdown-content]"></ng-content>
       </div>
     </div>

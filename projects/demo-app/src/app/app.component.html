@@ -44,58 +44,43 @@
       <NeoDropdown
         [searchable]="true"
         (searchChange)="onSearch($event)"
-        label="Sélectionner une catégorie (simple)"
+        [label]="label2()"
+      >
+        <div dropdown-content>
+          @for (category of filterItems(group2Items); track category.id) {
+            <NeoDropdownItem
+              (click)="selectCategory(category.id, categories, label2)"
+              [item]="category.title"
+            />
+            <div class="neo-border-black neo-border-b-2"></div>
+          }
+        </div>
+      </NeoDropdown>
+      <NeoDropdown
+        [multiSelect]="true"
+        [searchable]="true"
+        (searchChange)="onSearch($event)"
+        [label]="label()"
       >
         <div dropdown-content>
           @for (category of filterItems(categories); track category.id) {
-            <NeoDropdownItem class="neo-text-left" [item]="category.title" />
+            <NeoDropdownItem
+              (click)="selectCategory(category.id, categories, label)"
+              [item]="category.title"
+            />
             <div class="neo-border-black neo-border-b-2"></div>
           }
         </div>
       </NeoDropdown>
 
-      <NeoDropdown
-        [label]="label() + ' (groupe + recherche + dditem)'"
-        [searchable]="true"
-        (searchChange)="onSearch($event)"
-      >
-        <div class="neo-bg-white" dropdown-content>
-          <!-- Groupe 1 -->
-          <div class="neo-py-2">
-            <div
-              class="neo-px-4 neo-bg-white neo-text-sm neo-font-bold neo-text-gray-500"
-            >
-              Groupe 1
-            </div>
-            @for (item of filterItems(group1Items); track item.id) {
-              <NeoDropdownItem [item]="item.title" />
-            }
-          </div>
-
-          <!-- Groupe 2 -->
-          <div class="neo-py-2 neo-border-t-2 neo-border-black">
-            <div class="neo-px-4 neo-text-sm neo-font-bold neo-text-gray-500">
-              Groupe 2
-            </div>
-            @for (item of filterItems(group2Items); track item.id) {
-              <!--
-              <div
-                (click)="selectCategory(item.id, group2Items)"
-                class="neo-px-4 neo-py-2 hover:neo-bg-[#B8FF9F]"
-              >
-                {{ item.title }}
-              </div>
-            -->
-              <NeoDropdownItem
-                (click)="selectCategory(item.id, group2Items)"
-                [item]="item.title"
-              >
-              </NeoDropdownItem>
-            }
-          </div>
-        </div>
-      </NeoDropdown>
       <!--
+
+            <p
+              class="neo-px-4 neo-py-2 neo-border-b-2 neo-border-black hover:neo-bg-[#B8FF9F]"
+            >
+              {{ category.title }}
+            </p>
+
       <NeoDropdown>
         <span dropdown-label>Sélectionner une catégorie</span>
 
@@ -139,3 +124,44 @@
     >
   </p>
 </div>
+<!--
+      <NeoDropdown
+        [label]="label() + ' (groupe + recherche + dditem)'"
+        [searchable]="true"
+        (searchChange)="onSearch($event)"
+      >
+        <div class="neo-bg-white" dropdown-content>
+          <div class="neo-py-2">
+            <div
+              class="neo-px-4 neo-bg-white neo-text-sm neo-font-bold neo-text-gray-500"
+            >
+              Groupe 1
+            </div>
+            @for (item of filterItems(group1Items); track item.id) {
+              <NeoDropdownItem [item]="item.title" />
+            }
+          </div>
+
+          <div class="neo-py-2 neo-border-t-2 neo-border-black">
+            <div class="neo-px-4 neo-text-sm neo-font-bold neo-text-gray-500">
+              Groupe 2
+            </div>
+            @for (item of filterItems(group2Items); track item.id) {
+              <NeoDropdownItem
+                (click)="selectCategory(item.id, group2Items)"
+                [item]="item.title"
+              >
+              </NeoDropdownItem>
+            }
+          </div>
+        </div>
+      </NeoDropdown>
+-->
+<!--
+              <div
+                (click)="selectCategory(item.id, group2Items)"
+                class="neo-px-4 neo-py-2 hover:neo-bg-[#B8FF9F]"
+              >
+                {{ item.title }}
+              </div>
+            -->
