@@ -37,6 +37,8 @@ export class NeoInput implements OnInit, OnChanges, ControlValueAccessor {
   neoUIService = inject(NeoUiService);
   @ContentChild('prefix') prefixTemplate?: TemplateRef<any>;
   @ContentChild('suffix') suffixTemplate?: TemplateRef<any>;
+  @Input() hasBorder = true;
+  @Input() hasShadow = true;
   @Input() placeholder = '';
   @Input() label: string = '';
   @Input() type = '';
@@ -54,7 +56,6 @@ export class NeoInput implements OnInit, OnChanges, ControlValueAccessor {
       this.setDisabledState(this.isDisabled);
     }
     this.combinedClassesValue = this.computeCombinedClasses();
-    console.log(this.isDisabled);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -119,7 +120,6 @@ export class NeoInput implements OnInit, OnChanges, ControlValueAccessor {
 
   getClassesState(backgroundClasses: any): string {
     const { hoverClass, disabledClass, focusClass } = backgroundClasses;
-    console.log(focusClass);
     return `${
       this.isDisabled
         ? `neo-cursor-not-allowed`

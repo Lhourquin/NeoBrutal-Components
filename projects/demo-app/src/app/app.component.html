@@ -32,6 +32,9 @@
     <h1 class="text-center m-2 font-bold">Connectez-vous</h1>
     <form [formGroup]="loginForm" class="flex flex-col space-y-1">
       <NeoInput
+        [hasBorder]="false"
+        [hasShadow]="false"
+        backgroundColor="none"
         label="Email"
         helperText="Enter votre adresses email"
         type="text"
@@ -40,16 +43,81 @@
         formControlName="identifier"
         id="identifier"
         [required]="true"
-      />
+      >
+        <!--
+        <ng-template #suffix>
+          <NeoDropdown
+            [hasBorder]="false"
+            [hasShadow]="false"
+            align="right"
+            backgroundColor="none"
+            [multiSelect]="true"
+            [searchable]="true"
+            (searchChange)="onSearch($event)"
+          >
+            <img
+              width="25"
+              height="25"
+              src="https://img.icons8.com/ios-filled/50/empty-filter.png"
+              alt="empty-filter"
+            />
+            <div dropdown-content>
+              @for (category of filterItems(categories); track category.id) {
+                <NeoDropdownItem
+                  class="neo-text-left"
+                  (click)="selectCategory(category.id, categories, label)"
+                  [item]="category.title"
+                />
+                <div class="neo-border-black neo-border-b-2"></div>
+              }
+            </div>
+          </NeoDropdown>
+        </ng-template>
+-->
+      </NeoInput>
+      <NeoDropdown
+        [hasBorder]="false"
+        [hasShadow]="false"
+        backgroundColor="none"
+        [multiSelect]="true"
+        [searchable]="true"
+        (searchChange)="onSearch($event)"
+      >
+        <img
+          width="25"
+          height="25"
+          src="https://img.icons8.com/ios-filled/50/empty-filter.png"
+          alt="empty-filter"
+        />
+        <div dropdown-content>
+          @for (category of filterItems(categories); track category.id) {
+            <NeoDropdownItem
+              class="neo-text-left"
+              (click)="selectCategory(category.id, categories, label)"
+              [item]="category.title"
+            />
+            <div class="neo-border-black neo-border-b-2"></div>
+          }
+        </div>
+      </NeoDropdown>
       <NeoSelect
         [options]="categories"
         id="categories"
         name="categorie"
         label="Catégorie"
         [multiSelect]="false"
+        (selectionChange)="getSelection($event)"
         formControlName="category"
         [placeholder]="'Sélectionnez une catégorie'"
-      ></NeoSelect>
+      >
+        @for (category of categories; track category.id) {
+          <NeoOption
+            (optionSelected)="getSelection($event)"
+            [value]="category.id"
+            [label]="category.title"
+          />
+        }
+      </NeoSelect>
       <NeoDropdown
         [searchable]="true"
         (searchChange)="onSearch($event)"
@@ -67,6 +135,7 @@
       </NeoDropdown>
       <NeoDropdown
         [multiSelect]="true"
+        [relative]="true"
         [searchable]="true"
         (searchChange)="onSearch($event)"
         [label]="label()"

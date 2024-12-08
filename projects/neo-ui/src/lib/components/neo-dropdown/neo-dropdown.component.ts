@@ -38,20 +38,24 @@ export class NeoDropdown implements OnInit, OnChanges {
   elementRef = inject(ElementRef);
   neoDropdownService = inject(NeoDropdownService);
   openDropdownId = this.neoDropdownService.openDropdownId();
-  isOpen: boolean = false;
-  searchValue: string = '';
+  neoUIService = inject(NeoUiService);
   dropdownId: string = uuidv4();
   inputId: string = uuidv4();
-  neoUIService = inject(NeoUiService);
+  searchValue: string = '';
   combinedClassesValue: string = '';
+  isOpen: boolean = false;
   disabled: boolean = false;
   closable: boolean = true;
+  @Input() hasBorder: boolean = true;
+  @Input() relative: boolean = false;
+  @Input() hasShadow: boolean = true;
+  @Input() searchable: boolean = false;
+  @Input() multiSelect: boolean = false;
   @Input() backgroundColor: Color = inject(NeoUiService).getColor();
   @Input() roundedType: RoundedType = inject(NeoUiService).getRoundedType();
-  @Input() searchable: boolean = false;
+  @Input() align: 'right' | 'left' = 'left';
   @Input() label: string = '';
   @Output() searchChange = new EventEmitter<string>();
-  @Input() multiSelect: boolean = false;
 
   constructor() {
     effect(() => {

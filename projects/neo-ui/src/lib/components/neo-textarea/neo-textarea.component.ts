@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-neo-textarea',
   standalone: true,
   imports: [],
   templateUrl: './neo-textarea.component.html',
-  styleUrl: './neo-textarea.component.css'
+  styleUrl: './neo-textarea.component.css',
 })
 export class NeoTextareaComponent {
-
+  @Input() id: string = '';
+  @Input() label: string = '';
+  @Input() placeholder: string = '';
 }

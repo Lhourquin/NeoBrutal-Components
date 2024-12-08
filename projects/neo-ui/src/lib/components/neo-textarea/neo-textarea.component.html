@@ -1,1 +1,10 @@
-<p>neo-textarea works!</p>
+<label [for]="id">{{ label }}</label>
+
+<textarea
+  class="neo-border-black neo-p-2.5 neo-w-full neo-border-2 focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)] active:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+  [id]="id"
+  name="description"
+  rows="5"
+  cols="33"
+  [placeholder]="placeholder"
+></textarea>

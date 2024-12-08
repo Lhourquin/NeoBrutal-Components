@@ -40,7 +40,9 @@ export class NeoSelect implements ControlValueAccessor {
   toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
-  onSelectionChange(event) {}
+  onSelectionChange(event: Event) {
+    console.log(event);
+  }
   selectOption(option: any) {
     //let value = selectedValues.map((v) => v.label).join(', ')
 

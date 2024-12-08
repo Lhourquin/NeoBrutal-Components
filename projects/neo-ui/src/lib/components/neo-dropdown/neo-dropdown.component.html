@@ -1,10 +1,13 @@
 <div class="neo-relative">
   <button
     type="button"
-    class="neo-inline-flex neo-w-full neo-justify-center neo-gap-x-1.5 neo-border-2 neo-border-black neo-px-3 neo-py-2"
+    class="neo-inline-flex neo-w-full neo-justify-center neo-gap-x-1.5 neo-px-3 neo-py-2"
     [ngClass]="[
       combinedClassesValue,
-      'hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]  focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]',
+      hasBorder ? 'neo-border-2 neo-border-black ' : '',
+      hasShadow
+        ? 'hover:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]  focus:neo-outline-none focus:neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]'
+        : '',
     ]"
     (click)="toggleDropdown($event)"
   >
@@ -24,10 +27,17 @@
       />
     </svg>
     -->
+    <ng-content></ng-content>
   </button>
   @if (isOpen) {
     <div
-      class="neo-absolute neo-left-0 neo-right-0 neo-mt-2 neo-bg-white neo-border-2 neo-border-black neo-z-50 neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+      class="neo-absolute neo-mt-2 neo-bg-white neo-border-2 neo-border-black neo-z-50 neo-shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+      [ngClass]="{
+        'neo-w-full': relative,
+        'neo-min-w-[200px]': !relative,
+        'neo-left-0': align == 'left',
+        'neo-right-0': align === 'right',
+      }"
     >
       @if (searchable) {
         <input

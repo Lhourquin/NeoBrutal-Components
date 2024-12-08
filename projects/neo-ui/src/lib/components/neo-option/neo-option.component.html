@@ -1,1 +1,8 @@
-<p>neo-option works!</p>
+<div
+  class="neo-px-4 neo-py-2 neo-cursor-pointer"
+  [id]="value"
+  (click)="selectOption()"
+  [ngClass]="[combinedClassesValue]"
+>
+  {{ label }}
+</div>
